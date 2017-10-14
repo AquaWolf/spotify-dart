@@ -517,6 +517,40 @@ abstract class TrackLinkMapper {
   }
 }
 
+/// Mapper for TracksLink
+abstract class TracksLinkMapper {
+  /// Converts an instance of TracksLink to Map.
+  static Map<String, dynamic> map(TracksLink object) {
+    if (object == null) return null;
+    return (new _owl_json.MapBuilder(ordered: false)
+          ..put('href', object.href)
+          ..put('total', object.total))
+        .toMap();
+  }
+
+  /// Converts a Map to an instance of TracksLink.
+  static TracksLink parse(Map<String, dynamic> map) {
+    if (map == null) return null;
+    final TracksLink object = new TracksLink();
+    object.href = map['href'];
+    object.total = map['total'];
+    return object;
+  }
+
+  /// Converts a JSON string to an instance of TracksLink.
+  static TracksLink fromJson(String json) {
+    if (json == null || json.isEmpty) return null;
+    final Map<String, dynamic> map = JSON.decoder.convert(json);
+    return parse(map);
+  }
+
+  /// Converts an instance of TracksLink to JSON string.
+  static String toJson(TracksLink object) {
+    if (object == null) return null;
+    return JSON.encoder.convert(map(object));
+  }
+}
+
 /// Mapper for AudioFeature
 abstract class AudioFeatureMapper {
   /// Converts an instance of AudioFeature to Map.
