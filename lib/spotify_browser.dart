@@ -14,6 +14,8 @@ import 'spotify_browser.json.g.dart';
 import 'src/models/token_request.dart';
 import 'src/models/token_request.json.g.dart';
 
+part 'src/models/paging.dart';
+part 'src/models/error.dart';
 part 'src/models/artist.dart';
 part 'src/models/followers.dart';
 part 'src/models/image.dart';
@@ -24,6 +26,7 @@ part 'src/models/user.dart';
 part 'src/models/audio_feature.dart';
 
 part 'src/endpoints/endpoint_base.dart';
+part 'src/endpoints/endpoint_paging.dart';
 part 'src/endpoints/artists.dart';
 part 'src/endpoints/albums.dart';
 part 'src/endpoints/tracks.dart';
@@ -34,4 +37,5 @@ part 'src/endpoints/audio_features.dart';
 part 'src/spotify_credentials.dart';
 
 part 'src/spotify_base.dart';
+part 'src/spotify_exception.dart';
 part 'src/spotify_browser.dart';

@@ -1,27 +1,22 @@
-// Copyright (c) 2017, rinukkusu. All rights reserved. Use of this source code
+// Copyright (c) 2017, chances. All rights reserved. Use of this source code
 // is governed by a BSD-style license that can be found in the LICENSE file.
 
 part of spotify;
 
-class Playlists extends EndpointBase {
+class Playlists extends EndpointPaging {
   @override
   String get _path => 'v1/browse';
 
   Playlists(SpotifyApiBase api) : super(api);
 
-  Future<Iterable<Playlist>> featured() async {
-    var json = await _api._get('$_path/featured-playlists');
-    var map = JSON.decode(json);
+   Pages<PlaylistSimple> get featured {
+     return _getPages(
+         '$_path/featured-playlists', PlaylistSimpleMapper.parse,
+         'playlists', PlaylistsFeaturedMapper.parse
+     );
+   }
 
-    var playlistsMap = map['items'] as Iterable<Map>;
-    return playlistsMap.map((m) => PlaylistMapper.parse(m));
-  }
-
-  Future<Iterable<PlaylistSimple>> me() async {
-    var json = await _api._get('v1/me/playlists');
-    var map = JSON.decode(json);
-
-    var playlistsMap = map['items'] as Iterable<Map>;
-    return playlistsMap.map((m) => PlaylistSimpleMapper.parse(m));
+  Pages<PlaylistSimple> get me {
+     return _getPages('v1/me/playlists', PlaylistSimpleMapper.parse);
   }
 }

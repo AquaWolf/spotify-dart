@@ -1,4 +1,4 @@
-// Copyright (c) 2017, rinukkusu. All rights reserved. Use of this source code
+// Copyright (c) 2017, chances. All rights reserved. Use of this source code
 // is governed by a BSD-style license that can be found in the LICENSE file.
 
 part of spotify;
@@ -114,6 +114,12 @@ class PlaylistSimple {
 
   /// The Spotify URI for the playlist.
   String uri;
+}
+
+@JsonClass()
+class PlaylistsFeatured {
+  /// The message of the day for Spotify's featured playlists
+  String message;
 }
 
 @JsonClass()
