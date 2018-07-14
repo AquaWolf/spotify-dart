@@ -38,10 +38,12 @@ abstract class SpotifyApiBase {
     if (_credentials.tokenRequest.grantType == GrantType.clientCredentials &&
         (_credentials.token == null || _credentials.token.isExpired)) {
       var headers = {'Authorization': 'Basic ${_credentials.basicAuth}'};
-      var body = TokenRequestMapper.map(_credentials.tokenRequest);
+      var body = _credentials.tokenRequest.toJson();
 
       var responseJson = await _postImpl(_tokenRefreshUrl, headers, body);
-      _credentials.token = ApiTokenMapper.fromJson(responseJson);
+      var responseMap = JSON.decode(responseJson);
+
+      _credentials.token = ApiToken.fromJson(responseMap);
     }
   }
 

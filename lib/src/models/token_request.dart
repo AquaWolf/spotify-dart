@@ -3,7 +3,9 @@
 
 library spotify.token;
 
-import 'package:owl/annotation/json.dart';
+import 'package:json_annotation/json_annotation.dart';
+
+part 'token_request.g.dart';
 
 enum GrantType {
   authorizationCode,
@@ -12,19 +14,21 @@ enum GrantType {
   implicitGrant
 }
 
-@JsonClass()
-class TokenRequest {
+@JsonSerializable()
+class TokenRequest extends Object with _$TokenRequestSerializerMixin {
+  factory TokenRequest.fromJson(Map<String, dynamic> json) => _$TokenRequestFromJson(json);
+
   TokenRequest([this._grantType = GrantType.clientCredentials]) {
     grantTypeString = this.toString();
   }
 
-  @JsonField(key: 'grant_type')
+  @JsonKey(name: 'grant_type')
   String grantTypeString;
 
-  @Transient()
+  @JsonKey(ignore: true)
   GrantType _grantType;
 
-  @Transient()
+  @JsonKey(ignore: true)
   GrantType get grantType => _grantType;
 
   @override
@@ -44,39 +48,40 @@ class TokenRequest {
   }
 }
 
-@JsonClass()
-class ApiToken {
-  @JsonField(key: 'access_token')
+@JsonSerializable()
+class ApiToken extends Object with _$ApiTokenSerializerMixin {
+  ApiToken() {}
+  factory ApiToken.fromJson(Map<String, dynamic> json) => _$ApiTokenFromJson(json);
+
+  @JsonKey(name: 'access_token')
   String accessToken;
 
-  @JsonField(key: 'refresh_token')
+  @JsonKey(name: 'refresh_token')
   String refreshToken;
 
-  @JsonField(key: 'token_type')
+  @JsonKey(name: 'token_type')
   String tokenType;
 
-  @JsonField(key: 'expires_in')
+  @JsonKey(name: 'expires_in')
   int expiresIn;
 
-  @Transient()
+  @JsonKey(ignore: true)
   DateTime _createdOn = new DateTime.now();
   bool get isExpired =>
       _createdOn.difference(new DateTime.now()).inSeconds.abs() > expiresIn;
 
-  @Transient()
+  @JsonKey(ignore: true)
   GrantType _grantType = GrantType.clientCredentials;
-  @Transient()
+  @JsonKey(ignore: true)
   GrantType get grantType => _grantType;
-  @Transient()
+  @JsonKey(ignore: true)
   GrantType _refreshGrantType = GrantType.clientCredentials;
-  @Transient()
+  @JsonKey(ignore: true)
   GrantType get refreshGrantType => _refreshGrantType;
 
-  @Transient()
+  @JsonKey(ignore: true)
   bool get canRefresh => _grantType == GrantType.clientCredentials ||
       _grantType == GrantType.authorizationCode;
-
-  ApiToken();
 
   ApiToken.implicitGrant(String accessToken, int expiresIn) {
     this.accessToken = accessToken;
