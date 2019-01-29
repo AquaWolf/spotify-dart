@@ -3,15 +3,15 @@
     "configurations": [
         {
             "name": "Run tests",
-            "type": "dart-cli",
+            "type": "dart",
             "request": "launch",
             "program": "${workspaceRoot}/test/spotify_test.dart"
         },
         {
             "name": "Run example",
-            "type": "dart-cli",
+            "type": "dart",
             "request": "launch",
-            "program": "${workspaceRoot}/example/spotify_dart_example.dart"
+            "program": "${workspaceRoot}/example/example.dart"
         }
     ]
 }

@@ -1,10 +1,10 @@
 // Copyright (c) 2017, rinukkusu. All rights reserved. Use of this source code
 // is governed by a BSD-style license that can be found in the LICENSE file.
 
-part of spotify;
+part of spotify.models;
 
-@JsonSerializable()
-class Image extends Object with _$ImageSerializerMixin {
+@JsonSerializable(createToJson: false)
+class Image extends Object {
   Image() {}
   factory Image.fromJson(Map<String, dynamic> json) => _$ImageFromJson(json);
 

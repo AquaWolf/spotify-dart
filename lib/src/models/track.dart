@@ -1,10 +1,10 @@
 // Copyright (c) 2017, rinukkusu. All rights reserved. Use of this source code
 // is governed by a BSD-style license that can be found in the LICENSE file.
 
-part of spotify;
+part of spotify.models;
 
-@JsonSerializable()
-class Track extends Object with _$TrackSerializerMixin implements TrackSimple {
+@JsonSerializable(createToJson: false)
+class Track extends Object implements TrackSimple {
   Track() {}
   factory Track.fromJson(Map<String, dynamic> json) => _$TrackFromJson(json);
 
@@ -120,10 +120,11 @@ class Track extends Object with _$TrackSerializerMixin implements TrackSimple {
   String uri;
 }
 
-@JsonSerializable()
-class TrackSimple extends Object with _$TrackSimpleSerializerMixin {
+@JsonSerializable(createToJson: false)
+class TrackSimple extends Object {
   TrackSimple() {}
-  factory TrackSimple.fromJson(Map<String, dynamic> json) => _$TrackSimpleFromJson(json);
+  factory TrackSimple.fromJson(Map<String, dynamic> json) =>
+      _$TrackSimpleFromJson(json);
 
   /**
    * The artists who performed the track. Each artist object includes a link in
@@ -210,10 +211,11 @@ class TrackSimple extends Object with _$TrackSimpleSerializerMixin {
 }
 
 /// A song saved in a Spotify user’s “Your Music” library
-@JsonSerializable()
-class TrackSaved extends Object with _$TrackSavedSerializerMixin {
+@JsonSerializable(createToJson: false)
+class TrackSaved extends Object {
   TrackSaved() {}
-  factory TrackSaved.fromJson(Map<String, dynamic> json) => _$TrackSavedFromJson(json);
+  factory TrackSaved.fromJson(Map<String, dynamic> json) =>
+      _$TrackSavedFromJson(json);
 
   /// The date and time the track was saved.
   @JsonKey(name: 'added_at')
@@ -223,10 +225,11 @@ class TrackSaved extends Object with _$TrackSavedSerializerMixin {
   Track track;
 }
 
-@JsonSerializable()
-class TrackLink extends Object with _$TrackLinkSerializerMixin {
+@JsonSerializable(createToJson: false)
+class TrackLink extends Object {
   TrackLink() {}
-  factory TrackLink.fromJson(Map<String, dynamic> json) => _$TrackLinkFromJson(json);
+  factory TrackLink.fromJson(Map<String, dynamic> json) =>
+      _$TrackLinkFromJson(json);
 
   // /// Known external URLs for this track.
   //@JsonKey(name: 'external_urls')
@@ -245,10 +248,11 @@ class TrackLink extends Object with _$TrackLinkSerializerMixin {
   String uri;
 }
 
-@JsonSerializable()
-class TracksLink extends Object with _$TracksLinkSerializerMixin {
+@JsonSerializable(createToJson: false)
+class TracksLink extends Object {
   TracksLink() {}
-  factory TracksLink.fromJson(Map<String, dynamic> json) => _$TracksLinkFromJson(json);
+  factory TracksLink.fromJson(Map<String, dynamic> json) =>
+      _$TracksLinkFromJson(json);
 
   /// A link to the Web API endpoint where full details of the playlist's
   /// tracks can be retrieved

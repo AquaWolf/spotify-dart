@@ -1,12 +1,13 @@
 // Copyright (c) 2017, chances. All rights reserved. Use of this source code
 // is governed by a BSD-style license that can be found in the LICENSE file.
 
-part of spotify;
+part of spotify.models;
 
-@JsonSerializable()
-class Playlist extends Object with _$PlaylistSerializerMixin implements PlaylistSimple {
+@JsonSerializable(createToJson: false)
+class Playlist extends Object implements PlaylistSimple {
   Playlist() {}
-  factory Playlist.fromJson(Map<String, dynamic> json) => _$PlaylistFromJson(json);
+  factory Playlist.fromJson(Map<String, dynamic> json) =>
+      _$PlaylistFromJson(json);
 
   /// true if the owner allows other users to modify the playlist.
   bool collaborative;
@@ -67,10 +68,11 @@ class Playlist extends Object with _$PlaylistSerializerMixin implements Playlist
   String uri;
 }
 
-@JsonSerializable()
-class PlaylistSimple extends Object with _$PlaylistSimpleSerializerMixin {
+@JsonSerializable(createToJson: false)
+class PlaylistSimple extends Object {
   PlaylistSimple() {}
-  factory PlaylistSimple.fromJson(Map<String, dynamic> json) => _$PlaylistSimpleFromJson(json);
+  factory PlaylistSimple.fromJson(Map<String, dynamic> json) =>
+      _$PlaylistSimpleFromJson(json);
 
   /// true if the owner allows other users to modify the playlist.
   bool collaborative;
@@ -122,19 +124,21 @@ class PlaylistSimple extends Object with _$PlaylistSimpleSerializerMixin {
   String uri;
 }
 
-@JsonSerializable()
-class PlaylistsFeatured extends Object with _$PlaylistsFeaturedSerializerMixin {
+@JsonSerializable(createToJson: false)
+class PlaylistsFeatured extends Object {
   PlaylistsFeatured() {}
-  factory PlaylistsFeatured.fromJson(Map<String, dynamic> json) => _$PlaylistsFeaturedFromJson(json);
+  factory PlaylistsFeatured.fromJson(Map<String, dynamic> json) =>
+      _$PlaylistsFeaturedFromJson(json);
 
   /// The message of the day for Spotify's featured playlists
   String message;
 }
 
-@JsonSerializable()
-class PlaylistTrack extends Object with _$PlaylistTrackSerializerMixin {
+@JsonSerializable(createToJson: false)
+class PlaylistTrack extends Object {
   PlaylistTrack() {}
-  factory PlaylistTrack.fromJson(Map<String, dynamic> json) => _$PlaylistTrackFromJson(json);
+  factory PlaylistTrack.fromJson(Map<String, dynamic> json) =>
+      _$PlaylistTrackFromJson(json);
 
   /// The date and time the track was added.
   /// Note that some very old playlists may return [null] in this field.

@@ -1,10 +1,10 @@
 // Copyright (c) 2017, rinukkusu. All rights reserved. Use of this source code
 // is governed by a BSD-style license that can be found in the LICENSE file.
 
-part of spotify;
+part of spotify.models;
 
-@JsonSerializable()
-class Album extends Object with _$AlbumSerializerMixin implements AlbumSimple {
+@JsonSerializable(createToJson: false)
+class Album extends Object implements AlbumSimple {
   Album() {}
   factory Album.fromJson(Map<String, dynamic> json) => _$AlbumFromJson(json);
 
@@ -92,10 +92,11 @@ class Album extends Object with _$AlbumSerializerMixin implements AlbumSimple {
   String releaseDatePrecision;
 }
 
-@JsonSerializable()
-class AlbumSimple extends Object with _$AlbumSimpleSerializerMixin {
+@JsonSerializable(createToJson: false)
+class AlbumSimple extends Object {
   AlbumSimple() {}
-  factory AlbumSimple.fromJson(Map<String, dynamic> json) => _$AlbumSimpleFromJson(json);
+  factory AlbumSimple.fromJson(Map<String, dynamic> json) =>
+      _$AlbumSimpleFromJson(json);
 
   /// The type of the album: one of "album", "single", or "compilation".
   @JsonKey(name: 'album_type')
@@ -141,10 +142,11 @@ class AlbumSimple extends Object with _$AlbumSimpleSerializerMixin {
   String uri;
 }
 
-@JsonSerializable()
-class Copyright extends Object with _$CopyrightSerializerMixin {
+@JsonSerializable(createToJson: false)
+class Copyright extends Object {
   Copyright() {}
-  factory Copyright.fromJson(Map<String, dynamic> json) => _$CopyrightFromJson(json);
+  factory Copyright.fromJson(Map<String, dynamic> json) =>
+      _$CopyrightFromJson(json);
 
   /// The copyright text for this album.
   String text;

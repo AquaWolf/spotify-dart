@@ -15,6 +15,7 @@ abstract class SpotifyApiBase {
   Tracks _tracks;
   Playlists _playlists;
   Users _users;
+  Search _search;
   AudioFeatures _audioFeatures;
 
   Artists get artists => _artists;
@@ -22,6 +23,7 @@ abstract class SpotifyApiBase {
   Tracks get tracks => _tracks;
   Playlists get playlists => _playlists;
   Users get users => _users;
+  Search get search => _search;
   AudioFeatures get audioFeatures => _audioFeatures;
 
   SpotifyApiBase(this._credentials) {
@@ -30,6 +32,7 @@ abstract class SpotifyApiBase {
     _tracks = new Tracks(this);
     _playlists = new Playlists(this);
     _users = new Users(this);
+    _search = new Search(this);
     _audioFeatures = new AudioFeatures(this);
   }
 
@@ -38,18 +41,19 @@ abstract class SpotifyApiBase {
     if (_credentials.tokenRequest.grantType == GrantType.clientCredentials &&
         (_credentials.token == null || _credentials.token.isExpired)) {
       var headers = {'Authorization': 'Basic ${_credentials.basicAuth}'};
+      // Body is automagically  encoded in application/x-www-form-urlencoded
+      //  by [BaseClient.post] because [body] is a Map
       var body = _credentials.tokenRequest.toJson();
 
       var responseJson = await _postImpl(_tokenRefreshUrl, headers, body);
-      var responseMap = JSON.decode(responseJson);
+      var responseMap = json.decode(responseJson);
 
       _credentials.token = ApiToken.fromJson(responseMap);
     }
   }
 
   Future<String> _get(String path) {
-    return _requestWrapper(path,
-        (url, headers) => _getImpl(url, headers));
+    return _requestWrapper(path, (url, headers) => _getImpl(url, headers));
   }
 
   Future<String> _post(String path, String body) {

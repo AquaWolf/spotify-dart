@@ -1,12 +1,13 @@
 // Copyright (c) 2017, rinukkusu. All rights reserved. Use of this source code
 // is governed by a BSD-style license that can be found in the LICENSE file.
 
-part of spotify;
+part of spotify.models;
 
-@JsonSerializable()
-class AudioFeature extends Object with _$AudioFeatureSerializerMixin {
+@JsonSerializable(createToJson: false)
+class AudioFeature extends Object {
   AudioFeature() {}
-  factory AudioFeature.fromJson(Map<String, dynamic> json) => _$AudioFeatureFromJson(json);
+  factory AudioFeature.fromJson(Map<String, dynamic> json) =>
+      _$AudioFeatureFromJson(json);
 
   /**
    * A confidence measure from 0.0 to 1.0 of whether the track is acoustic. 

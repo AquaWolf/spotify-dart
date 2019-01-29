@@ -15,8 +15,9 @@ enum GrantType {
 }
 
 @JsonSerializable()
-class TokenRequest extends Object with _$TokenRequestSerializerMixin {
-  factory TokenRequest.fromJson(Map<String, dynamic> json) => _$TokenRequestFromJson(json);
+class TokenRequest extends Object {
+  factory TokenRequest.fromJson(Map<String, dynamic> json) =>
+      _$TokenRequestFromJson(json);
 
   TokenRequest([this._grantType = GrantType.clientCredentials]) {
     grantTypeString = this.toString();
@@ -46,12 +47,15 @@ class TokenRequest extends Object with _$TokenRequestSerializerMixin {
         );
     }
   }
+
+  Map<String, dynamic> toJson() => _$TokenRequestToJson(this);
 }
 
-@JsonSerializable()
-class ApiToken extends Object with _$ApiTokenSerializerMixin {
+@JsonSerializable(createToJson: false)
+class ApiToken extends Object {
   ApiToken() {}
-  factory ApiToken.fromJson(Map<String, dynamic> json) => _$ApiTokenFromJson(json);
+  factory ApiToken.fromJson(Map<String, dynamic> json) =>
+      _$ApiTokenFromJson(json);
 
   @JsonKey(name: 'access_token')
   String accessToken;

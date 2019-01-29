@@ -1,10 +1,10 @@
 // Copyright (c) 2017, rinukkusu. All rights reserved. Use of this source code
 // is governed by a BSD-style license that can be found in the LICENSE file.
 
-part of spotify;
+part of spotify.models;
 
-@JsonSerializable()
-class Artist extends Object with _$ArtistSerializerMixin implements ArtistSimple {
+@JsonSerializable(createToJson: false)
+class Artist extends Object implements ArtistSimple {
   Artist() {}
   factory Artist.fromJson(Map<String, dynamic> json) => _$ArtistFromJson(json);
 
@@ -50,10 +50,11 @@ class Artist extends Object with _$ArtistSerializerMixin implements ArtistSimple
   int popularity;
 }
 
-@JsonSerializable()
-class ArtistSimple extends Object with _$ArtistSimpleSerializerMixin {
+@JsonSerializable(createToJson: false)
+class ArtistSimple extends Object {
   ArtistSimple() {}
-  factory ArtistSimple.fromJson(Map<String, dynamic> json) => _$ArtistSimpleFromJson(json);
+  factory ArtistSimple.fromJson(Map<String, dynamic> json) =>
+      _$ArtistSimpleFromJson(json);
 
   // /// Known external URLs for this artist.
   //@JsonKey(name: 'external_urls')

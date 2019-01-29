@@ -1,6 +1,22 @@
 # Changelog
 
-## 0.0.9
+## 0.1.3+1
+
+- eliminate duplicate code (serializers)
+
+## 0.1.3
+
+- add currently playing endpoint
+
+## 0.1.2
+
+- make pub analyzer happy
+
+## 0.1.1
+
+- add search endpoint
+
+## 0.0.9 - 0.1.0
 
 - support Dart 2 with switch to json_serializable
 

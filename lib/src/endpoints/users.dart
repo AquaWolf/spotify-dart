@@ -10,34 +10,40 @@ class Users extends EndpointPaging {
   Users(SpotifyApiBase api) : super(api);
 
   Future<User> me() async {
-    var json = await _api._get('v1/me');
-    var map = JSON.decode(json);
+    var jsonString = await _api._get('v1/me');
+    var map = json.decode(jsonString);
 
     return User.fromJson(map);
   }
 
+  Future<Player> currentlyPlaying() async {
+    var jsonString = await _api._get('v1/me/player/currently-playing');
+    var map = json.decode(jsonString);
+
+    return Player.fromJson(map);
+  }
+
   Future<UserPublic> get(String userId) async {
-    var json = await _api._get('$_path/$userId');
-    var map = JSON.decode(json);
+    var jsonString = await _api._get('$_path/$userId');
+    var map = json.decode(jsonString);
 
     return UserPublic.fromJson(map);
   }
 
   Pages<PlaylistSimple> playlists(String userId) {
-    return _getPages('$_path/$userId/playlists', (json) => PlaylistSimple.fromJson(json));
+    return _getPages(
+        '$_path/$userId/playlists', (json) => PlaylistSimple.fromJson(json));
   }
 
   Future<Playlist> playlist(String userId, String playlistId) async {
-    var json = await _api._get('$_path/$userId/playlists/$playlistId');
-    var map = JSON.decode(json);
+    var jsonString = await _api._get('$_path/$userId/playlists/$playlistId');
+    var map = json.decode(jsonString);
 
     return Playlist.fromJson(map);
   }
 
   Pages<PlaylistTrack> playlistTracks(String userId, String playlistId) {
-    return _getPages(
-        '$_path/$userId/playlists/$playlistId/tracks',
-        (json) => PlaylistTrack.fromJson(json)
-    );
+    return _getPages('$_path/$userId/playlists/$playlistId/tracks',
+        (json) => PlaylistTrack.fromJson(json));
   }
 }

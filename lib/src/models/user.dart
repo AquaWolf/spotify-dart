@@ -1,10 +1,10 @@
 // Copyright (c) 2017, chances. All rights reserved. Use of this source code
 // is governed by a BSD-style license that can be found in the LICENSE file.
 
-part of spotify;
+part of spotify.models;
 
-@JsonSerializable()
-class User extends Object with _$UserSerializerMixin implements UserPublic {
+@JsonSerializable(createToJson: false)
+class User extends Object implements UserPublic {
   User() {}
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 
@@ -63,10 +63,11 @@ class User extends Object with _$UserSerializerMixin implements UserPublic {
   String uri;
 }
 
-@JsonSerializable()
-class UserPublic extends Object with _$UserPublicSerializerMixin {
+@JsonSerializable(createToJson: false)
+class UserPublic extends Object {
   UserPublic() {}
-  factory UserPublic.fromJson(Map<String, dynamic> json) => _$UserPublicFromJson(json);
+  factory UserPublic.fromJson(Map<String, dynamic> json) =>
+      _$UserPublicFromJson(json);
 
   /// The name displayed on the user's profile. null if not available.
   @JsonKey(name: 'display_name')

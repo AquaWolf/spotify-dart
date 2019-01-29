@@ -17,7 +17,7 @@ class SpotifyApiCredentials {
   }
 
   TokenRequest get tokenRequest => _tokenRequest;
-  String get basicAuth => BASE64.encode('$clientId:$clientSecret'.codeUnits);
+  String get basicAuth => base64.encode('$clientId:$clientSecret'.codeUnits);
 
   static implicitGrant(String accessToken, int expiresIn) {
     return new SpotifyApiCredentials.withToken(
